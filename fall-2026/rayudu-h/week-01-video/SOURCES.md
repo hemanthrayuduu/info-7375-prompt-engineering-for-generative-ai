@@ -59,7 +59,7 @@ Claude Code was used as a working collaborator throughout, and specifically:
 
 - **Beat-sheet authoring** — drafting the act structure and the `show` blocks,
   and the narration passes that followed.
-- **Manim scene code** — the three scenes in `scenes.py`, including the layout
+- **Manim scene code** — the scenes in `scenes.py`, including the layout
   arithmetic that keeps every label inside the safe area.
 - **The reel-local Manim outro** (`B08_TitleCredit`) — written to replace the
   channel-locked stock outro without modifying the toolkit.
@@ -70,10 +70,18 @@ Claude Code was used as a working collaborator throughout, and specifically:
 
 I directed the work, chose the concept and the argument, verified every number
 against `main.py` myself, and reviewed the rendered frames. **No Claude
-response shown on screen is fabricated** — B00's three result lines, B03's and
-B07's prompts are text I wrote into the beat sheet as *the film's own content*,
-not screenshots of a conversation passed off as evidence. The reel contains no
-claimed transcript of a Claude session.
+response appears on screen.** The Claude app styling in B00, B03 and B07 frames
+prompts I wrote; it never shows an answer.
+
+That was not true of every earlier cut, and the correction belongs here. Until
+2026-09-24, B00 showed three result lines landing under my prompt, as Claude's
+answer, under a composer chip reading a real model name — lines I had written
+into the beat sheet, not a response Claude gave. I had described them in this
+file as "the film's own content," and I no longer think that framing holds: a
+viewer sees Claude answering, and the assignment requires any Claude response
+shown on screen to be real and dated. On 2026-09-25 I removed the result lines,
+blanked the model chip in all three composer beats, and replaced B03's
+"rendering Manim…" indicator, which implied Claude generated the next figure.
 
 ## Corrections applied during the build (DOUBLE-CHECK LAW)
 

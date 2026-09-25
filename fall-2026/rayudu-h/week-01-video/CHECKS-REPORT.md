@@ -13,9 +13,9 @@ Teaching arc:  FRAMEWORK ✓ | WORKED EXAMPLE ✓ | FALSIFIABILITY ✓
 
 | Beat | Act | Class | Artifact named in `shot.show` |
 |---|---|---|---|
-| B00 | ASK | SHOW | composer types the ask; 3 result lines land in sequence |
-| B01 | BLUF | SHOW | writer types "a creativity dial", turns it terracotta, deletes, retypes "a concentration control" |
-| B01A | ANALOGY | SHOW | contrast slider travels; three swatches spread to near-ink/near-white, then wash to one grey; the terracotta marker on the brightest never moves |
+| B00 | ASK | SHOW | composer types the student's prompt; the spark line reads "the question this video answers". No Claude answer is shown (result lines removed 2026-09-25) |
+| B01 | BLUF | SHOW | writer types "a creativity control." and "truthful the choice is."; each wrong word ("creativity", "truthful") shows terracotta, is deleted, and is retyped ("concentration", "concentrated"). **Corrected 2026-09-25** — see the section at the end: this row previously claimed a correction that never ran. |
+| B01A | ANALOGY | SHOW | contrast slider travels; three swatches spread to near-ink/near-white, then wash to one grey; the terracotta marker on the brightest never moves. Re-timed to the words 2026-09-25; the inversion (lower temperature, higher contrast) is shown as it is spoken |
 | B02 | FRAMEWORK | SHOW | 3 score chips → bars rise while their values count up → sum settles 1.000000 |
 | B03 | ASK | SHOW | composer with the plot request typed; send button pulses |
 | B04 | MECHANISM | SHOW | identity types in; gap pins at 2; three ratio bars grow to 4/2/1 units; e-column lands |
@@ -151,3 +151,73 @@ exit code — a greedy wrap that overflowed to 51 characters, and a cue grouper
 that flushed after exceeding its budget instead of before. Both fixed at the
 root; the budget is now enforced against the *wrapped* lines, which is the
 only formulation that actually holds.
+
+---
+
+## B01 correction never ran — found by a viewer, not a gate (2026-09-25)
+
+The B01 row above claimed, from 2026-09-16 until today, that the hesitant writer
+corrects its misconception. It did not. Frames show the overview holding
+*"Temperature is a creativity dial. It decides how truthful the answer is."*
+from t≈5s to the end of the beat — while the narration says the opposite. It was
+in every master, including the first. It was caught by watching the video.
+
+**Cause.** `BrutalistHesitantWriter` splits `text` on whitespace and looks each
+single word up in `triggerWords`. The triggers were phrases ("a creativity
+dial", "how truthful the answer is"), which can never equal a single word, so
+no correction ever fired and nothing reported it. The ai-explainer `SKILL.md`
+instructs phrase triggers ("put the whole phrase in `triggerWords`"); the
+component it ships cannot match them.
+
+**Fix, within the component's actual contract.** One wrong word per sentence:
+`creativity → concentration`, `truthful → concentrated`, `hesitateBetween: 0`.
+The component's timeline was simulated before rendering (every keystroke floors
+at one frame at 30 fps) and the simulation was calibrated against the broken
+render. Verified by frames: "truthful" turns terracotta at ~6.1 s as the voice
+says "not how truthful it is", and the corrected overview — word-for-word the
+narration — holds from ~8.9 s to 11.0 s.
+
+**Whole-reel audit.** Every beat sampled at 30 / 60 / 92 % of its span in the
+final master and read against its narration. One further defect: B06 line 3
+read "Counts at seed 7, n=1000: 849 / 630 / 469", which looks like three
+outcomes in one run (they sum to 1,948, not 1,000). They are outcome 2's count
+at T = 0.5 / 1 / 2; the line now says so.
+
+| Check | Broken B01 | Fixed B01 |
+|---|---|---|
+| Gate V (frame-level QC) | 0 BLOCKER / 0 MAJOR | 0 BLOCKER / 0 MAJOR |
+| Reading the screen against the script | **contradiction** | agrees word-for-word |
+
+Gate V measures canvas fill and legibility; it passed the broken beat and the
+fixed beat identically. It is not a check on meaning, and this report should not
+have used it as one.
+
+### Second pass the same day — Claude UI beats, and B01A timing
+
+**Claude UI beats show prompts, never responses.** The audit also surfaced a
+risk worse than any contradiction. B00 showed three result lines landing under
+the prompt as Claude's answer, beneath a composer chip reading a real model
+name ("Fable 5 · High", the component default). Those lines were written into
+the beat sheet, not produced by Claude — and the assignment requires any Claude
+response shown on screen to be real and dated. Fixed with props only: B00's
+`output` removed, `modelLabel`/`effortLabel` blanked in B00/B03/B07, and B03's
+"rendering Manim…" replaced with "the question the next figure answers". This
+deliberately breaks the toolkit's COLD OPEN LAW (which requires result lines);
+the assignment governs a graded submission. Logged in the beat sheet metadata.
+
+**B01A ran ~3 s behind its own narration.** Word timings from `mp3/words.json`
+showed the voice saying "slide it up" at 2.5 s while the slider first moved at
+6.0 s. Its line "That is temperature" could also be heard backwards — sliding
+*up* is *lower* temperature. The narration now says so outright ("Temperature is
+that slider, run backwards: lower temperature, higher contrast", 73 → 77 words,
+23.87 s → 26.18 s), and every event in the scene was re-timed to its phrase. The
+knob swings to high contrast on "lower temperature, higher contrast" as it is
+spoken.
+
+| Check | Result |
+|---|---|
+| Layout audit (Gate B) | CLEAN — 31 snapshots |
+| Gate V | CLEAN — 0 BLOCKER / 0 MAJOR |
+| Changed beats read against the words at the moment each is spoken | B00, B03, B07, and B01A at six phrase points — all agree |
+| Captions | 57 cues · longest line 42 · 0 timing errors · all 10 beats aligned |
+| Reel | 176.42 s (2:56), 3840×2160 |

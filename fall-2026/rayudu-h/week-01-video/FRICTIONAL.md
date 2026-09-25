@@ -274,6 +274,75 @@ says "change only for off-brand one-offs", so it was a one-line fix per beat to
   five, two rows were weak and one was absent — see the two sections below,
   which exist because of that check. Entry count was never the thing.
 
+## 2026-09-25 — the overview contradicted the narration, and I found it by watching
+
+- **What I noticed.** Watching the video through, the overview beat (B01) says
+  on screen *"It decides how truthful the answer is"* while the voice is saying
+  *"not how truthful it is."* The two most important sentences in the video were
+  contradicting each other at the same moment.
+- **What the frames showed.** Worse than a timing slip: the correction never ran
+  at all. The writer typed the misconception and stopped, and the screen held
+  *"a creativity dial … how truthful the answer is"* to the end of the beat. It
+  was in every master since the first one. My 2026-09-16 entry above says I sped
+  up the typing "to get the correction finished and held" — that belief was
+  wrong. The correction had never happened, and nobody had checked the frames
+  for it; `CHECKS-REPORT.md` recorded it as working.
+- **Why.** The writer component splits the text on whitespace and looks each
+  *single word* up in its trigger list. My triggers were phrases, so they could
+  never match, and nothing warned. The toolkit's own `SKILL.md` tells authors to
+  use phrase triggers — the doctrine and the component it ships disagree. I did
+  not change the shared component; I worked within what it actually does: one
+  wrong word per sentence (`creativity → concentration`,
+  `truthful → concentrated`).
+- **Checked before rendering, not after.** Every keystroke takes at least one
+  frame at 30 fps, and each correction pauses 1.0–1.5 s, so a correction that
+  runs past the end of an 11-second beat gets cut off the same way. The
+  component's timeline was simulated first and the simulation was checked
+  against the broken render (it predicted typing done at 5.34 s; the frames show
+  ~5.0 s). A three-correction version overflowed and was rejected. The one that
+  shipped holds the corrected text for ~2 s, and "truthful" turns terracotta at
+  ~6.1 s — as the voice says "truthful."
+- **A second doctrine field that does nothing.** The beat carries
+  `lead_silence_s: 0.8`, which `SKILL.md` requires on this beat. No script in
+  the runtime reads it; the voice starts at t = 0. I left the field and recorded
+  it here rather than pretend it works.
+- **Then I checked everything the same way.** Every beat sampled at 30 / 60 /
+  92 % of its span in the final master and read against its script. Two more
+  problems, one small and one not:
+  - B06 said *"Counts at seed 7, n=1000: 849 / 630 / 469"* — which reads as three
+    outcomes in one run, and those sum to 1,948. They are outcome 2 at
+    T = 0.5 / 1 / 2. The line now says that.
+  - B00 showed three result lines landing under my prompt **as Claude's answer**,
+    under a chip reading a real model name. I wrote those lines; Claude never
+    produced them. The assignment requires a shown Claude response to be real
+    and dated, and a fabricated transcript fails it outright. `SOURCES.md`
+    defended them as "the film's own content." Reading the rule again, I do not
+    think that holds — a viewer sees Claude answering. I removed them, blanked the
+    model chip, and replaced B03's "rendering Manim…" indicator.
+- **B01A was ~3 seconds late, and could be heard backwards.** The word timings
+  showed "slide it up" spoken at 2.5 s with the slider first moving at 6.0 s. And
+  "That is temperature," straight after "slide it up," invites exactly the wrong
+  mapping: sliding up is *lower* temperature. The narration now says "run
+  backwards: lower temperature, higher contrast," and the whole scene is timed to
+  its words. The inversion is not a figure of speech — the slider `k` plays the
+  role of `1/T`, because `log p_i − log p_k = (z_i − z_k)/T` (in `FACTCHECK.md`).
+- **Human and AI, this time.** I caught the contradiction; Claude found the
+  cause, simulated the fix, ran the whole-reel audit, and made the edits. The
+  gates and Claude's own QC passes had all missed it: Gate V passed the broken
+  beat and the fixed beat identically, because it measures how full the frame
+  is, not what the words say. Claude's frame checks earlier this week covered
+  only the beats it had changed. I chose to remove the implied Claude responses
+  rather than keep them with a label, and to have the B01A inversion said out
+  loud.
+- **What I understand now.** A report that says a correction happens is not
+  evidence that it does, and a gate that passes is not a check on meaning. The
+  check that actually catches a contradiction is the plainest one: read what is
+  on screen against what is being said, at the moment it is said.
+- **Still open.** Why does the writer accept a trigger that can never match, in
+  silence? A trigger that matches nothing should be an error, not a no-op.
+  **Next step:** raise it — and the unused `lead_silence_s` — as toolkit issues,
+  rather than patch the shared component from inside one assignment.
+
 ---
 
 ## Human and AI contributions (retrospective — added 2026-09-23)
@@ -316,6 +385,9 @@ I fixed causes rather than overriding checks.
   scored on.
 - Changed the caption cue budget twice after reading the output rather than the
   exit code.
+- Rejected the ask→answer opening the toolkit prescribes for B00 (added
+  2026-09-25): it showed words I wrote as Claude's reply. The prompt stays; the
+  "answer" is gone.
 
 **What I have not verified myself.** I have read and can explain every line of
 `scenes.py` and every field in `beat_sheet.json`, and I re-derived the softmax

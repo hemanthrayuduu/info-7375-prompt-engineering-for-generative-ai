@@ -42,7 +42,7 @@ SERIF = "EB Garamond"           # Claude serif (bundled in runtime/fonts)
 MONO  = "PT Mono"               # real error text reads as mono
 
 # -- measured narration durations (mp3/timings.json) = the master clock -------
-DUR = {"B01A": 23.87, "B02": 22.42, "B04": 21.97, "B05": 26.30, "B08": 2.47}
+DUR = {"B01A": 26.18, "B02": 22.42, "B04": 21.97, "B05": 26.30, "B08": 2.47}
 
 # -- verified figures (main.py, scores [1, 2, 3]) ----------------------------
 P_T1 = (0.0900305732, 0.2447284711, 0.6652409558)   # T = 1, sums to 1.000000
@@ -97,7 +97,7 @@ class B01A_ContrastSlider(Scene):
         self._t = 0.0
 
         title = T_("The Contrast Slider", 46).move_to([0.0, 3.02, 0.0])
-        cap   = T_("same photo, three brightnesses", 28, SOFT).move_to([0.0, 2.16, 0.0])
+        cap   = T_("high contrast  \u00b7  low temperature", 28, SOFT).move_to([0.0, 2.16, 0.0])
 
         k = ValueTracker(K_BASE)
 
@@ -133,49 +133,48 @@ class B01A_ContrastSlider(Scene):
         def knob_x():
             return -3.0 + 6.0 * (k.get_value() - K_LO) / (K_HI - K_LO)
 
-        P(self, Write(title), rt=1.1)
-        W(self, 0.3)
-        P(self, FadeIn(swatches, shift=UP * 0.2), FadeIn(names), FadeIn(foot), rt=1.2)
-
-        # attach the updaters AFTER the reveal so the fade-in plays cleanly
-        for rect, b in zip(swatches, B_BASE):
-            rect.add_updater(lambda m, b=b: m.set_fill(color=shade(b), opacity=1.0))
-        knob.add_updater(lambda m: m.move_to([knob_x(), track_y, 0.0]))
-
-        P(self, Create(track), FadeIn(knob), FadeIn(lo_lb), FadeIn(hi_lb), rt=1.0)
-        W(self, 0.3)
-        P(self, FadeIn(marker, shift=DOWN * 0.2), Write(cap), rt=0.9)
-        W(self, 0.4)
-
-        def swap_cap(old, text, color=SOFT, rt=0.8):
-            """Replace the caption with a clean cross-fade.
-
-            NOT Transform(): morphing between two Text mobjects with different
-            glyph counts interpolates letter-by-letter, and the in-between
-            frames are an unreadable pile. Caught in visual QC at t=18.5s on the
-            first render -- the automated gates sample too coarsely to see a
-            1.2s garble window. A fade swap reads as a clean replace.
-            """
+        # Timed to the words in mp3/words.json, not to feel. The first cut of this
+        # scene ran ~3s behind the voice: "slide it up" was spoken at 2.5s and the
+        # slider did not move until 6.0s. Each event now lands on its phrase.
+        def swap_cap(old, text, color=SOFT, rt=0.6):
+            """Cross-fade the caption. NOT Transform(): morphing between Text
+            mobjects with different glyph counts renders an unreadable pile of
+            letters mid-change (caught in visual QC, 2026-09-22)."""
             new = T_(text, 28, color).move_to([0.0, 2.16, 0.0])
             P(self, FadeOut(old, shift=UP * 0.10), FadeIn(new, shift=UP * 0.10), rt=rt)
             return new
 
-        # name it, then slide UP -- the swatches spread apart
-        cap = swap_cap(cap, "high contrast  \u00b7  low temperature")
-        P(self, k.animate.set_value(K_HI), rt=2.6)
-        W(self, 1.4)
+        P(self, Write(title), rt=1.0)                                   # "Think of the contrast slider
+        P(self, FadeIn(swatches, shift=UP * 0.2), FadeIn(names), FadeIn(foot),
+          Create(track), FadeIn(knob), FadeIn(lo_lb), FadeIn(hi_lb), rt=1.0)  #  on a photo."
+        for rect, b in zip(swatches, B_BASE):
+            rect.add_updater(lambda m, b=b: m.set_fill(color=shade(b), opacity=1.0))
+        knob.add_updater(lambda m: m.move_to([knob_x(), track_y, 0.0]))
+        P(self, FadeIn(marker, shift=DOWN * 0.2), rt=0.4)               # pinned before anything moves
+        W(self, 0.1)
 
-        # name it, then slide DOWN -- everything washes toward the same grey
-        cap = swap_cap(cap, "low contrast  \u00b7  high temperature")
-        P(self, k.animate.set_value(K_LO), rt=3.6)
-        W(self, 1.8)
+        P(self, FadeIn(cap), rt=0.5)                                     # 2.5s "Slide it up,
+        P(self, k.animate.set_value(K_HI), rt=1.8)                       #  bright parts get brighter
+        W(self, 2.8)                                                     #  ... everything pops."
 
-        # back to baseline; the marker has not moved through any of it
-        P(self, k.animate.set_value(K_BASE), rt=2.0)
-        W(self, 0.6)
-        cap = swap_cap(cap, "the brightest never changes", INK)
-        W(self, 1.0)
-        cap = swap_cap(cap, "a sharper photo is not a truer photo", INK)
+        cap = swap_cap(cap, "low contrast  \u00b7  high temperature")    # 7.7s "Slide it down,
+        P(self, k.animate.set_value(K_LO), rt=1.8)                       #  it all washes toward
+        W(self, 1.2)                                                     #  the same flat grey."
+
+        cap = swap_cap(cap, "the brightest never changes", INK)          # 11.3s "But the brightest
+        W(self, 0.4)                                                     #  pixel stays the brightest."
+        P(self, k.animate.set_value(K_BASE), rt=1.4)
+        W(self, 1.6)
+
+        cap = swap_cap(cap, "lower temperature  \u2192  higher contrast", INK)  # 15.3s "run backwards:
+        W(self, 0.7)
+        P(self, k.animate.set_value(K_HI), rt=1.4)                       # 16.6s "lower temperature,
+        W(self, 0.9)                                                     #  higher contrast."
+
+        P(self, k.animate.set_value(K_BASE), rt=1.4)                     # 18.9s "It changes how much
+        W(self, 2.7)                                                     #  ... never which one is on top."
+
+        cap = swap_cap(cap, "a sharper photo is not a truer photo", INK, rt=0.7)  # 23.0s "And a high-contrast photo
 
         knob.clear_updaters()
         for rect in swatches:

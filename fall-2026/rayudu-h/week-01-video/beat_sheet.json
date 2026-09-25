@@ -14,7 +14,7 @@
     "greeting": "Namaste, Hemanth",
     "greeting_note": "hello lexicon: Hindi, one word. Wagwan mod-10 rule is Bear's only and does not apply — this reel is not on the claude-liam channel.",
     "color_semantics": "Claude fidelity palette throughout: cream #FAF9F5 page, warm ink #3D3929, terracotta #D97757 as the ONE accent. Manim beats use the same three on a white canvas.",
-    "note": "INFO 7375 Week 1 coursework explainer, not a channel reel. Deviations from ai-explainer defaults, each deliberate: (1) voice af_bella instead of am_onyx — the assignment brief specifies it as the plain teaching voice, so IN-FOR-BEAR LAW does not apply and no Liam/Bear persona is claimed; (2) outro is a REEL-LOCAL Manim scene (B08_TitleCredit in scenes.py), not ClaudeTitleOutro — the latter hardcodes @NikBearBrown (OUTRO-LOCK.md, scoped to claude-liam-* slugs only) and this reel is credited to its actual author; keeping the outro in-reel means the assignment adds nothing to the toolkit; (3) register Plain rather than Teardown, matching the teaching audience. ILLUSTRATE LAW: the Claude UI appears only at B00 (with RESULT lines), the B03 ask micro-beat, B06 verdict, and B07 handoff. B02/B04/B05 are Manim figures. ASK→RESULT pairs: B00→B02 and B03→B04. EQUATIONS: rendered via the _math() unicode fallback in runtime/manim/animated_graphics.py — LaTeX is deliberately not installed, so MathTex degrades to italic serif Text and no raw TeX ever reaches the screen. EVIDENCE: every on-screen figure was reproduced locally from chapter1-course/lessons/01-randomness-and-first-prompts/code/main.py under Python 3.9.10 and 3.12.9; see SOURCES.md.",
+    "note": "INFO 7375 Week 1 coursework explainer, not a channel reel. Deviations from ai-explainer defaults, each deliberate: (1) voice af_bella instead of am_onyx — the assignment brief specifies it as the plain teaching voice, so IN-FOR-BEAR LAW does not apply and no Liam/Bear persona is claimed; (2) outro is a REEL-LOCAL Manim scene (B08_TitleCredit in scenes.py), not ClaudeTitleOutro — the latter hardcodes @NikBearBrown (OUTRO-LOCK.md, scoped to claude-liam-* slugs only) and this reel is credited to its actual author; keeping the outro in-reel means the assignment adds nothing to the toolkit; (3) register Plain rather than Teardown, matching the teaching audience. ILLUSTRATE LAW: the Claude UI appears only at B00 (the student's prompt, no result lines), the B03 question micro-beat, B06 verdict, and B07 handoff. B01A/B02/B04/B05 are Manim figures. There are no ASK→RESULT pairs — see (4). EQUATIONS: rendered via the _math() unicode fallback in runtime/manim/animated_graphics.py — LaTeX is deliberately not installed, so MathTex degrades to italic serif Text and no raw TeX ever reaches the screen. EVIDENCE: every on-screen figure was reproduced locally from chapter1-course/lessons/01-randomness-and-first-prompts/code/main.py under Python 3.9.10 and 3.12.9; see SOURCES.md. (4) CLAUDE-UI BEATS SHOW PROMPTS, NEVER RESPONSES — deliberate deviation from COLD OPEN LAW and the ASK→RESULT running indicator. The assignment requires that any Claude response shown on screen be a real one, captured and dated; none here was. So B00 shows the student's prompt with no result lines, B03 drops 'rendering Manim…', and the composer model chip is blank in B00/B03/B07 (its default was a real model name). Changed 2026-09-25.",
     "tags": [
       "temperature",
       "softmax",
@@ -25,7 +25,7 @@
       "Chapter 1"
     ],
     "build": {
-      "at": "2026-09-23T15:26:13",
+      "at": "2026-09-25T14:55:40",
       "cut": "master",
       "filled": 10,
       "of": 10,
@@ -58,19 +58,7 @@
           },
           {
             "at": 0.55,
-            "event": "running indicator: 'reading chapter 1…'"
-          },
-          {
-            "at": 0.72,
-            "event": "output line 1 lands: 'temperature rescales the ratio: exp((z_i − z_k) / T)'"
-          },
-          {
-            "at": 0.84,
-            "event": "output line 2 lands: 'the ordering [2, 1, 0] never changes'"
-          },
-          {
-            "at": 0.93,
-            "event": "output line 3 lands: 'concentration is not correctness'"
+            "event": "spark line under the composer: 'the question this video answers' — the prompt is framed as the question, and no Claude answer is shown"
           }
         ],
         "remotion": {
@@ -80,17 +68,14 @@
             "topic": "TEMPERATURE · INFO 7375",
             "segment": "Temperature Is Concentration, Not Truth.",
             "command": "Chapter 1 gives me a softmax over the scores 1, 2, 3 and a temperature knob. Show me exactly what temperature changes and what it leaves alone — using the ratio between two outcomes, not a creativity metaphor. Then name the one thing that explanation still cannot establish.",
-            "runningText": "reading chapter 1…",
-            "output": [
-              "temperature rescales the ratio: exp((z_i − z_k) / T)",
-              "the ordering [2, 1, 0] never changes",
-              "concentration is not correctness"
-            ],
-            "folderLabel": "INFO 7375"
+            "runningText": "the question this video answers",
+            "folderLabel": "INFO 7375",
+            "modelLabel": "",
+            "effortLabel": ""
           },
           "rendered": {
             "out": "media/B00.mp4",
-            "at": "2026-09-16T20:35:15.860306+00:00"
+            "at": "2026-09-25T18:46:55.835031+00:00"
           }
         }
       },
@@ -101,7 +86,7 @@
         "status": "VIDEO",
         "src": "media/B00.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -119,39 +104,35 @@
         "show": [
           {
             "at": 0.0,
-            "event": "cream page, empty; caret blinks (0.8s lead silence before the voice starts)"
+            "event": "cream page; the writer starts typing as the voice starts (no lead silence — the pipeline does not implement lead_silence_s)"
           },
           {
             "at": 0.12,
-            "event": "writer types line 1: 'Temperature is a creativity dial.'"
+            "event": "'creativity' turns terracotta as the voice says 'concentration control' — the misconception, about to be struck"
           },
           {
-            "at": 0.42,
-            "event": "'a creativity dial' turns terracotta — the phrase about to be deleted"
+            "at": 0.2,
+            "event": "'creativity' is deleted and retyped as 'concentration': line 2 now reads 'a concentration control.'"
           },
           {
-            "at": 0.52,
-            "event": "it is deleted and retyped as 'a concentration control'"
+            "at": 0.56,
+            "event": "'truthful' turns terracotta as the voice says 'not how truthful it is'"
           },
           {
-            "at": 0.66,
-            "event": "writer types line 2: 'It decides how truthful the answer is.'"
+            "at": 0.73,
+            "event": "'truthful' is deleted and retyped as 'concentrated': line 4 now reads 'concentrated the choice is.'"
           },
           {
-            "at": 0.82,
-            "event": "'how truthful the answer is' turns terracotta, deletes, retypes as 'how concentrated the choice is'"
-          },
-          {
-            "at": 0.95,
-            "event": "corrected overview holds on screen, both lines settled in ink"
+            "at": 0.81,
+            "event": "corrected overview holds in ink, word-for-word the narration: 'Temperature is a concentration control. It decides how concentrated the choice is.'"
           }
         ],
         "remotion": {
           "pattern": "BrutalistHesitantWriter",
           "props": {
-            "text": "Temperature is\na creativity dial.\nIt decides\nhow truthful the answer is.",
-            "triggerWords": "a creativity dial, how truthful the answer is",
-            "replacementWords": "a concentration control, how concentrated the choice is",
+            "text": "Temperature is\na creativity control.\nIt decides how\ntruthful the choice is.",
+            "triggerWords": "creativity, truthful",
+            "replacementWords": "concentration, concentrated",
             "face": "serif",
             "fontSize": 145,
             "lineSpacing": 1.3,
@@ -160,11 +141,11 @@
             "charMs": 20,
             "mistakeRate": 0,
             "hesitateWithin": 0,
-            "hesitateBetween": 5
+            "hesitateBetween": 0
           },
           "rendered": {
             "out": "media/B01.mp4",
-            "at": "2026-09-16T20:33:16.632056+00:00"
+            "at": "2026-09-25T18:25:22.648488+00:00"
           }
         }
       },
@@ -175,13 +156,13 @@
         "status": "VIDEO",
         "src": "media/B01.mp4",
         "filled_by": "remotion:BrutalistHesitantWriter",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
       "beat_id": "B01A",
       "act": "ANALOGY",
-      "narration_text": "Think of the contrast slider on a photo. Slide it up, and bright parts get brighter and dark parts get darker — everything pops. Slide it down, and it all washes toward the same flat grey. But the brightest pixel is still the brightest, either way. That is temperature. It changes how much the outcomes differ — never which one is on top. And a high-contrast photo is not a more accurate photo.",
+      "narration_text": "Think of the contrast slider on a photo. Slide it up, and bright parts get brighter and dark parts get darker — everything pops. Slide it down, and it all washes toward the same flat grey. But the brightest pixel stays the brightest. Temperature is that slider, run backwards: lower temperature, higher contrast. It changes how much the outcomes differ — never which one is on top. And a high-contrast photo is not a more accurate photo.",
       "voice": "af_bella",
       "engine": "kokoro",
       "estimated_duration_s": 25,
@@ -211,6 +192,10 @@
             "event": "knob returns to centre, swatches return to baseline; the pinned marker has not moved once"
           },
           {
+            "at": 0.7,
+            "event": "on 'run backwards' the caption swaps to 'lower temperature  →  higher contrast' — the inversion stated on screen, so 'slide it up' cannot be heard as 'turn temperature up'"
+          },
+          {
             "at": 0.76,
             "event": "on 'never which one is on top' the line 'the brightest never changes' lands beneath the marker"
           },
@@ -228,14 +213,14 @@
           "at": ""
         }
       },
-      "actual_duration_s": 23.87,
+      "actual_duration_s": 26.18,
       "audio_file": "mp3/beat-B01A.mp3",
-      "render_duration_s": 23.875,
+      "render_duration_s": 26.208333333333332,
       "build": {
         "status": "MANIM",
         "src": "manim/B01A.mp4",
         "filled_by": "manim:B01A_ContrastSlider",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -287,7 +272,7 @@
         "status": "MANIM",
         "src": "manim/B02.mp4",
         "filled_by": "manim:B02_ScoresToProbs",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -304,11 +289,11 @@
         "show": [
           {
             "at": 0.0,
-            "event": "cut to the Claude composer, ask already typed — this is the receipt for the figure that follows"
+            "event": "cut to the Claude composer, the student's question already typed — the question B04's figure answers (the figure is the reel's own Manim scene, not a Claude output)"
           },
           {
             "at": 0.45,
-            "event": "running indicator: 'rendering Manim…'"
+            "event": "running indicator: 'the question the next figure answers'"
           },
           {
             "at": 0.8,
@@ -322,13 +307,15 @@
             "topic": "TEMPERATURE · INFO 7375",
             "segment": "The Ratio",
             "command": "Plot p2/p0 for the softmax over scores [1, 2, 3] at T = 0.5, 1, 2. Show the score gap staying fixed at 2 while only T changes, and check each ratio against exp(2/T).",
-            "runningText": "rendering Manim…",
+            "runningText": "the question the next figure answers",
             "output": [],
-            "folderLabel": "INFO 7375"
+            "folderLabel": "INFO 7375",
+            "modelLabel": "",
+            "effortLabel": ""
           },
           "rendered": {
             "out": "media/B03.mp4",
-            "at": "2026-09-16T20:47:16.969480+00:00"
+            "at": "2026-09-25T18:48:41.552241+00:00"
           }
         }
       },
@@ -339,7 +326,7 @@
         "status": "VIDEO",
         "src": "media/B03.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -399,7 +386,7 @@
         "status": "MANIM",
         "src": "manim/B04.mp4",
         "filled_by": "manim:B04_RatioCollapse",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -463,7 +450,7 @@
         "status": "MANIM",
         "src": "manim/B05.mp4",
         "filled_by": "manim:B05_ConcentrationLimit",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -508,7 +495,7 @@
             "artifactLines": [
               "Mechanism: p_i/p_k = exp((z_i − z_k)/T). Normalization cancels, so T rescales every ratio at once.",
               "Verified: p₂/p₀ = 54.5981500331 / 7.3890560989 / 2.7182818285 at T = 0.5 / 1 / 2 — exactly e⁴ / e² / e¹.",
-              "Ordering [2, 1, 0] never changes. Counts at seed 7, n=1000: 849 / 630 / 469.",
+              "Ordering [2, 1, 0] never changes. Seed 7, n = 1000: outcome 2 is drawn 849 / 630 / 469 times at T = 0.5 / 1 / 2.",
               "Limit case: at T = 0.1 the worst outcome still holds 2.061060e-09 — small, not zero. T = 0 raises ValueError.",
               "Boundary: concentration is not correctness. T cannot add information the program never received.",
               "Reproduced: main.py run 3x under Python 3.9.10 and 3.12.9 — identical counts each time. Matched on these versions, not proven universal."
@@ -516,7 +503,7 @@
           },
           "rendered": {
             "out": "media/B06.mp4",
-            "at": "2026-09-17T05:08:42.013250+00:00"
+            "at": "2026-09-25T18:35:00.423712+00:00"
           }
         }
       },
@@ -527,7 +514,7 @@
         "status": "VIDEO",
         "src": "media/B06.mp4",
         "filled_by": "remotion:ClaudeVerdictArtifact",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -568,11 +555,13 @@
             "command": "Take a softmax over the scores [1, 2, 3]. Compute p2/p0 at T = 0.5, 1, and 2, and check each value against exp(2/T). Now change ONLY the middle score, to 2.5, and recompute: tell me which ratios moved, which stayed fixed, and why the fixed one had to stay fixed.",
             "runningText": "paste this into Claude…",
             "output": [],
-            "folderLabel": "INFO 7375"
+            "folderLabel": "INFO 7375",
+            "modelLabel": "",
+            "effortLabel": ""
           },
           "rendered": {
             "out": "media/B07.mp4",
-            "at": "2026-09-16T21:22:00.789524+00:00"
+            "at": "2026-09-25T18:50:29.593380+00:00"
           }
         }
       },
@@ -583,7 +572,7 @@
         "status": "VIDEO",
         "src": "media/B07.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     },
     {
@@ -627,7 +616,7 @@
         "status": "MANIM",
         "src": "manim/B08.mp4",
         "filled_by": "manim:B08_TitleCredit",
-        "at": "2026-09-23T15:26:13"
+        "at": "2026-09-25T14:55:40"
       }
     }
   ]

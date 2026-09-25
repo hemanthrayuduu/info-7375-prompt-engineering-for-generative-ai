@@ -40,219 +40,220 @@ trust a number for the wrong reason.
 Think of the contrast slider on a photo.
 
 10
-00:00:27,500 --> 00:00:31,707
+00:00:27,500 --> 00:00:31,582
 Slide it up, and bright parts get brighter
 and dark parts get darker — everything
 
 11
-00:00:31,708 --> 00:00:32,708
+00:00:31,583 --> 00:00:32,583
 pops.
 
 12
-00:00:32,917 --> 00:00:36,792
+00:00:32,667 --> 00:00:36,208
 Slide it down, and it all washes
 toward the same flat grey.
 
 13
-00:00:36,875 --> 00:00:39,583
-But the brightest pixel is
-still the brightest, either way.
+00:00:36,250 --> 00:00:38,250
+But the brightest pixel
+stays the brightest.
 
 14
-00:00:40,083 --> 00:00:41,083
-That is temperature.
+00:00:38,958 --> 00:00:43,250
+Temperature is that slider, run backwards:
+lower temperature, higher contrast.
 
 15
-00:00:41,542 --> 00:00:45,125
+00:00:43,875 --> 00:00:47,417
 It changes how much the outcomes
 differ — never which one is on top.
 
 16
-00:00:45,667 --> 00:00:48,583
+00:00:47,958 --> 00:00:50,917
 And a high-contrast photo is
 not a more accurate photo.
 
 17
-00:00:48,833 --> 00:00:49,833
+00:00:51,167 --> 00:00:52,167
 Here is the whole machine.
 
 18
-00:00:50,500 --> 00:00:52,292
+00:00:52,833 --> 00:00:54,625
 Three scores — one, two, three.
 
 19
-00:00:53,167 --> 00:00:56,666
+00:00:55,500 --> 00:00:58,999
 Exponentiate each one, divide by
 the total, and every outcome gets a
 
 20
-00:00:56,667 --> 00:00:57,667
+00:00:58,1000 --> 00:00:59,1000
 probability.
 
 21
-00:00:57,917 --> 00:01:03,167
+00:01:00,250 --> 00:01:05,500
 At temperature one those come out to zero
 point zero nine, zero point two four, and
 
 22
-00:01:03,583 --> 00:01:05,167
+00:01:05,917 --> 00:01:07,500
 zero point six seven.
 
 23
-00:01:05,208 --> 00:01:06,208
+00:01:07,542 --> 00:01:08,542
 That is the baseline.
 
 24
-00:01:06,875 --> 00:01:11,042
+00:01:09,208 --> 00:01:13,375
 Every number after this is the same three
 scores, seen at a different temperature.
 
 25
-00:01:11,292 --> 00:01:16,582
+00:01:13,625 --> 00:01:18,916
 So ask the machine the only question that
 isolates temperature: what happens to the
 
 26
-00:01:16,583 --> 00:01:18,042
+00:01:18,917 --> 00:01:20,375
 ratio between two outcomes?
 
 27
-00:01:18,500 --> 00:01:20,042
+00:01:20,833 --> 00:01:22,375
 Watch the ratio, not the bars.
 
 28
-00:01:20,708 --> 00:01:22,917
+00:01:23,042 --> 00:01:25,250
 Outcome two over outcome zero.
 
 29
-00:01:22,958 --> 00:01:26,833
+00:01:25,292 --> 00:01:29,167
 At temperature zero point five
 it is fifty-four point six.
 
 30
-00:01:26,875 --> 00:01:29,041
+00:01:29,208 --> 00:01:31,374
 At one, seven point three nine.
 
 31
-00:01:29,042 --> 00:01:31,667
+00:01:31,375 --> 00:01:33,1000
 At two, just two point seven two.
 
 32
-00:01:31,708 --> 00:01:34,457
+00:01:34,042 --> 00:01:36,791
 Those are exactly e to the
 fourth, e squared, and e.
 
 33
-00:01:34,458 --> 00:01:35,1000
+00:01:36,792 --> 00:01:38,333
 Same scores every time.
 
 34
-00:01:36,750 --> 00:01:38,917
+00:01:39,083 --> 00:01:41,250
 The gap between them is fixed at two.
 
 35
-00:01:38,958 --> 00:01:40,167
+00:01:41,292 --> 00:01:42,500
 Only the temperature moved.
 
 36
-00:01:40,500 --> 00:01:42,583
+00:01:42,833 --> 00:01:44,917
 Now the limit — what
 this does not establish.
 
 37
-00:01:43,292 --> 00:01:46,999
+00:01:45,625 --> 00:01:49,332
 Push the temperature down and the best
 outcome dominates, but it never becomes
 
 38
-00:01:46,1000 --> 00:01:51,958
+00:01:49,333 --> 00:01:54,292
 certain: at zero point one the worst
 still holds two times ten to the minus
 
 39
-00:01:52,542 --> 00:01:53,166
+00:01:54,875 --> 00:01:55,499
 nine.
 
 40
-00:01:53,167 --> 00:01:57,375
+00:01:55,500 --> 00:01:59,708
 Temperature zero is refused outright
 — the function raises a value error.
 
 41
-00:01:58,250 --> 00:01:59,833
+00:02:00,583 --> 00:02:02,167
 Concentration is not correctness.
 
 42
-00:02:00,375 --> 00:02:04,457
+00:02:02,708 --> 00:02:06,791
 Turn the contrast all the way up on a
 photo of the wrong person, and all you get
 
 43
-00:02:04,458 --> 00:02:06,583
+00:02:06,792 --> 00:02:08,917
 is a sharper picture of the wrong person.
 
 44
-00:02:06,833 --> 00:02:07,833
+00:02:09,167 --> 00:02:10,167
 So, one page.
 
 45
-00:02:08,417 --> 00:02:13,291
+00:02:10,750 --> 00:02:15,624
 Temperature divides the score gap before
 exponentiating, so it rescales every ratio
 
 46
-00:02:13,292 --> 00:02:14,292
+00:02:15,625 --> 00:02:16,625
 at once.
 
 47
-00:02:14,542 --> 00:02:18,875
+00:02:16,875 --> 00:02:21,208
 The ordering is untouched — outcome two
 wins at every temperature we tested.
 
 48
-00:02:19,583 --> 00:02:24,125
+00:02:21,917 --> 00:02:26,458
 The sampled counts agree: eight hundred
 forty-nine, six hundred thirty, four
 
 49
-00:02:24,167 --> 00:02:26,125
+00:02:26,500 --> 00:02:28,458
 hundred sixty-nine, at seed seven.
 
 50
-00:02:26,542 --> 00:02:28,958
+00:02:28,875 --> 00:02:31,292
 And none of that is evidence
 the answer is right.
 
 51
-00:02:29,208 --> 00:02:30,208
+00:02:31,542 --> 00:02:32,542
 Your turn.
 
 52
-00:02:30,250 --> 00:02:34,707
+00:02:32,583 --> 00:02:37,041
 Here is the prompt: take a softmax over
 the scores one, two, three, compute the
 
 53
-00:02:34,708 --> 00:02:39,625
+00:02:37,042 --> 00:02:41,958
 ratio of outcome two to outcome zero at
 temperatures zero point five, one, and
 
 54
-00:02:39,1000 --> 00:02:42,542
+00:02:42,333 --> 00:02:44,875
 two, and check each against
 e to the two over T.
 
 55
-00:02:43,125 --> 00:02:46,250
+00:02:45,458 --> 00:02:48,583
 Then change only the middle
 score and see which ratios move.
 
 56
-00:02:46,958 --> 00:02:51,333
+00:02:49,292 --> 00:02:53,667
 Run it, and watch which one stays fixed
 — that is the identity doing the work.
 
 57
-00:02:51,667 --> 00:02:53,958
+00:02:53,1000 --> 00:02:56,292
 Temperature is concentration, not truth.
 

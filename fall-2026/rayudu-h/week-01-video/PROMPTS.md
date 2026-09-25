@@ -9,7 +9,7 @@ build, so the reel is reproducible.
 
 ## On-screen prompts (these are content, not requests)
 
-**B00 — the cold-open ask** (typed into the composer, answered by 3 result lines):
+**B00 — the cold-open ask** (typed into the composer; no answer is shown — see `SOURCES.md`):
 ```
 Chapter 1 gives me a softmax over the scores 1, 2, 3 and a temperature knob.
 Show me exactly what temperature changes and what it leaves alone — using the
@@ -17,7 +17,7 @@ ratio between two outcomes, not a creativity metaphor. Then name the one thing
 that explanation still cannot establish.
 ```
 
-**B03 — the ASK→RESULT receipt for the B04 figure:**
+**B03 — the question the B04 figure answers** (B04 is the reel's own Manim scene, not a Claude output):
 ```
 Plot p2/p0 for the softmax over scores [1, 2, 3] at T = 0.5, 1, 2. Show the
 score gap staying fixed at 2 while only T changes, and check each ratio

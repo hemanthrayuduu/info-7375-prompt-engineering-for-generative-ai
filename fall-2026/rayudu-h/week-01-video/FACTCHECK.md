@@ -28,7 +28,9 @@ the Manim scenes; every value below matched to the digits shown.
 - The chapter's "labels as answers / answer key = label 0" wrong-answer
   hypothetical is a **constructed illustration**, so it is cut from this reel
   entirely rather than shown with a caption. Nothing on screen depends on it.
-- No model-version numbers, no vendor benchmark figures, nothing that dates.
+- No model-version numbers, no vendor benchmark figures, nothing that dates. *(True as of
+  2026-09-25. Until then the Claude composer's model chip showed its default — a real
+  model name — in B00, B03 and B07. It is now blank.)*
 
 ## Constructed / exaggerated visuals, labelled on screen
 
@@ -60,6 +62,12 @@ every slider position — the marker pinned to it never has to move. That is the
 same reason temperature cannot reorder a softmax: dividing every logit by `T > 0`
 rescales the gaps between them and leaves their order alone. The analogy and the
 mechanism share a property; they are not merely similar-sounding.
+
+The "run backwards" line (added 2026-09-25) is faithful for the same reason. In the scene
+the slider position `k` multiplies every deviation from the mid grey; in the softmax `1/T`
+multiplies every score gap, since `log p_i − log p_k = (z_i − z_k)/T`. So `k` plays the role
+of `1/T`, and lower temperature means higher contrast — the inversion is the mathematics,
+not a figure of speech.
 
 What the analogy does NOT carry: the exponential. Contrast is linear in
 brightness, softmax is exponential in the logits, so the analogy is exact about
