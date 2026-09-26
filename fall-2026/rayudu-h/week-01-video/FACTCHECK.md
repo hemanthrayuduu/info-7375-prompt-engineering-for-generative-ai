@@ -13,15 +13,18 @@ the Manim scenes; every value below matched to the digits shown.
 | 1 | p = exp(z/T) ÷ Σ exp(z/T) | B02 | chapter 1 prose + `main.py` | VERIFIED — the function's own form |
 | 2 | At T=1: 0.0900, 0.2447, 0.6652 | B02 | `main-output.txt` `probabilities` | VERIFIED exactly (0.09003057317038046, 0.24472847105479764, 0.6652409557748218) |
 | 3 | The three probabilities sum to 1.000000 | B02 | recomputed | VERIFIED — 1.000000000000 |
-| 4 | p₂/p₀ = exp((z₂ − z₀)/T) | B04 | derivation; normalization cancels | VERIFIED symbolically and numerically |
+| 4 | p₂/p₀ = exp((z₂ − z₀)/T) | B04 | derivation; normalization cancels | VERIFIED symbolically and numerically. **Shown on screen since 2026-09-26:** both probabilities carry the same total Σ exp(z/T), which cancels |
 | 5 | z₂ − z₀ = 2, fixed at every T | B04 | scores `[1, 2, 3]` | VERIFIED — 3 − 1 = 2 by construction |
 | 6 | Ratios 54.5981500331 / 7.3890560989 / 2.7182818285 at T = 0.5 / 1 / 2 | B04 | recomputed from softmax | VERIFIED to 10 dp |
 | 7 | Those ratios are exactly e⁴, e², e¹ | B04 | recomputed | VERIFIED — matched to < 1e-9 |
 | 8 | Ordering [2, 1, 0] never changes | B04, B06 | all four T values computed | VERIFIED at T = 0.5, 1, 2, 0.1 |
 | 9 | At T=0.1, p₀ = 2.061060e-09 — small, not zero | B05 | recomputed | VERIFIED — 2.061060e-09 |
 | 10 | T=0 raises `ValueError: Need logits and a positive finite temperature` | B05 | `main.py` guard clause | VERIFIED — also rejects negative, inf, nan, empty |
-| 11 | Seed-7 counts 849 / 630 / 469 (outcome 2 at T = 0.5 / 1 / 2) | B06 | `worked-examples.json`, reproduced by `main.py` | VERIFIED; T=1 count 630 matches `main-output.txt` |
+| 11 | Seed-7 counts 849 / 630 / 469 (outcome 2 at T = 0.5 / 1 / 2), and the full T = 2 row 202 / 329 / 469 | B06 | `worked-examples.json`, reproduced by `main.py` | VERIFIED; T=1 count 630 matches `main-output.txt`. Re-run 2026-09-26 via `main.py`'s own `sample()` at T = 0.5, 1 and 2 (Python 3.12.9): all nine counts match the recorded table exactly |
 | 12 | Concentration is not correctness | B05, B06 | argument, not measurement | JUDGEMENT — stated as the boundary, never as a measured result |
+| 13 | No temperature can turn a positive gap negative, so no two outcomes ever swap places | B04 | for T > 0, (z_i − z_k)/T has the same sign as z_i − z_k, so p_i/p_k > 1 exactly when z_i > z_k | VERIFIED symbolically — holds at every T > 0, not only the three temperatures tested |
+
+**The code, not just the textbook formula.** `main.py` computes `exp((x − peak) / T)`, subtracting the largest score before exponentiating, for numerical stability. The peak cancels in any ratio exactly as the total does, so the derivation shown in B04 holds for the program as written.
 
 ## Numbers deliberately NOT used
 

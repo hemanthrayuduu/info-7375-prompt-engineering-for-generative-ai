@@ -61,7 +61,7 @@ The reel also needs its paperwork set, or GATE F refuses to render:
 PROOF GATE). Copies live in the reel folder.
 
 **No toolkit modification is required.** Every beat renders from either
-`scenes.py` (the four Manim beats, including the outro) or a composition the
+`scenes.py` (the five Manim beats, including the outro) or a composition the
 toolkit already ships. Confirm the shipped ones are renderable:
 
 ```bash

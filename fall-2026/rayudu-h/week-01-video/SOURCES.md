@@ -108,6 +108,8 @@ records its own saved run under Python 3.14.6. So the honest claim is: **these
 counts matched on these interpreter versions** — not that they are reproducible
 on every platform, which I did not test.
 
+On 2026-09-26 `main.py`'s own `sample()` was also run at T = 0.5 and T = 2 (Python 3.12.9, seed 7, n = 1000). All nine counts matched the course's recorded worked examples exactly, including the T = 2 row 202 / 329 / 469 now shown in B06.
+
 ## Licence of this submission
 
 My own contributions in this folder are released under two licences, recorded

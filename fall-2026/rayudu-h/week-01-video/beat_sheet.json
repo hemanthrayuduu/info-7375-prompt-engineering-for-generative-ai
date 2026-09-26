@@ -25,7 +25,7 @@
       "Chapter 1"
     ],
     "build": {
-      "at": "2026-09-25T14:55:40",
+      "at": "2026-09-26T01:35:32",
       "cut": "master",
       "filled": 10,
       "of": 10,
@@ -86,7 +86,7 @@
         "status": "VIDEO",
         "src": "media/B00.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -156,7 +156,7 @@
         "status": "VIDEO",
         "src": "media/B01.mp4",
         "filled_by": "remotion:BrutalistHesitantWriter",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -220,7 +220,7 @@
         "status": "MANIM",
         "src": "manim/B01A.mp4",
         "filled_by": "manim:B01A_ContrastSlider",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -272,7 +272,7 @@
         "status": "MANIM",
         "src": "manim/B02.mp4",
         "filled_by": "manim:B02_ScoresToProbs",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -326,13 +326,13 @@
         "status": "VIDEO",
         "src": "media/B03.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
       "beat_id": "B04",
       "act": "MECHANISM",
-      "narration_text": "Watch the ratio, not the bars. Outcome two over outcome zero. At temperature zero point five it is fifty-four point six. At one, seven point three nine. At two, just two point seven two. Those are exactly e to the fourth, e squared, and e. Same scores every time. The gap between them is fixed at two. Only the temperature moved.",
+      "narration_text": "Divide outcome two by outcome zero. They share the same total underneath, so it cancels — what is left depends only on the gap between their scores, divided by T. That gap is fixed at two. At temperature zero point five the ratio is fifty-four point six. At one, seven point three nine. At two, just two point seven two — exactly e to the fourth, e squared, and e. No temperature can turn a positive gap negative, so no two outcomes ever swap places.",
       "voice": "af_bella",
       "engine": "kokoro",
       "estimated_duration_s": 26,
@@ -343,31 +343,31 @@
         "show": [
           {
             "at": 0.0,
-            "event": "the identity types in, unicode serif: p₂/p₀ = exp((z₂ − z₀)/T)"
+            "event": "title; p₂/p₀ written as two fractions, each over the SAME total Σ exp(z / T) — the definition from B02"
           },
           {
-            "at": 0.14,
-            "event": "z₂ − z₀ = 2 highlights terracotta and PINS — a fixed bracket that never moves again"
+            "at": 0.12,
+            "event": "on 'so it cancels' the shared total is struck through top and bottom and falls away"
           },
           {
-            "at": 0.3,
-            "event": "T = 0.5: a bracket spans outcome 0 to outcome 2, reading 54.5981500331 ×"
+            "at": 0.22,
+            "event": "what remains resolves into the identity p₂ / p₀ = exp((z₂ − z₀) / T), which rises to the top of the frame"
           },
           {
-            "at": 0.5,
-            "event": "T = 1: bracket collapses to 7.3890560989 ×, the bars visibly flattening behind it"
+            "at": 0.33,
+            "event": "on 'fixed at two' the gap pins: z₂ − z₀ = 2 (fixed), the beat's one terracotta element"
           },
           {
-            "at": 0.68,
-            "event": "T = 2: bracket collapses again to 2.7182818285 ×"
+            "at": 0.4,
+            "event": "table frame lands — T = 0.5 / 1 / 2 and the ordering strip — then each ratio and its bar arrive as the voice says it"
           },
           {
-            "at": 0.82,
-            "event": "the three values restate as e⁴, e², e¹ beside them — the identity closing"
+            "at": 0.8,
+            "event": "on 'exactly e to the fourth, e squared, and e' the e-column lands: = e⁴, e², e¹"
           },
           {
-            "at": 0.94,
-            "event": "ordering strip [2, 1, 0] holds unchanged across all three, under the figure"
+            "at": 0.9,
+            "event": "on 'no two outcomes ever swap places' the ordering strip darkens and grows — the conclusion the cancellation made inevitable"
           }
         ],
         "manim": {
@@ -379,14 +379,14 @@
           "at": ""
         }
       },
-      "actual_duration_s": 21.97,
+      "actual_duration_s": 31.25,
       "audio_file": "mp3/beat-B04.mp3",
-      "render_duration_s": 22.0,
+      "render_duration_s": 31.25,
       "build": {
         "status": "MANIM",
         "src": "manim/B04.mp4",
         "filled_by": "manim:B04_RatioCollapse",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -450,7 +450,7 @@
         "status": "MANIM",
         "src": "manim/B05.mp4",
         "filled_by": "manim:B05_ConcentrationLimit",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -495,7 +495,7 @@
             "artifactLines": [
               "Mechanism: p_i/p_k = exp((z_i − z_k)/T). Normalization cancels, so T rescales every ratio at once.",
               "Verified: p₂/p₀ = 54.5981500331 / 7.3890560989 / 2.7182818285 at T = 0.5 / 1 / 2 — exactly e⁴ / e² / e¹.",
-              "Ordering [2, 1, 0] never changes. Seed 7, n = 1000: outcome 2 is drawn 849 / 630 / 469 times at T = 0.5 / 1 / 2.",
+              "Ordering [2, 1, 0] never changes. Seed 7, n = 1000: outcome 2 is drawn 849 / 630 / 469 times at T = 0.5 / 1 / 2 — at T = 2 the full count is 202 / 329 / 469, still in order.",
               "Limit case: at T = 0.1 the worst outcome still holds 2.061060e-09 — small, not zero. T = 0 raises ValueError.",
               "Boundary: concentration is not correctness. T cannot add information the program never received.",
               "Reproduced: main.py run 3x under Python 3.9.10 and 3.12.9 — identical counts each time. Matched on these versions, not proven universal."
@@ -503,7 +503,7 @@
           },
           "rendered": {
             "out": "media/B06.mp4",
-            "at": "2026-09-25T18:35:00.423712+00:00"
+            "at": "2026-09-26T05:25:44.331309+00:00"
           }
         }
       },
@@ -514,13 +514,13 @@
         "status": "VIDEO",
         "src": "media/B06.mp4",
         "filled_by": "remotion:ClaudeVerdictArtifact",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
       "beat_id": "B07",
       "act": "HANDOFF",
-      "narration_text": "Your turn. Here is the prompt: take a softmax over the scores one, two, three, compute the ratio of outcome two to outcome zero at temperatures zero point five, one, and two, and check each against e to the two over T. Then change only the middle score and see which ratios move. Run it, and watch which one stays fixed — that is the identity doing the work.",
+      "narration_text": "Your turn. Here is the prompt: take a softmax over the scores one, two, three. Compute p two over p zero at T equals zero point five, one, and two, and check each value against e to the two over T. Now change only the middle score, to two point five, and recompute: tell me which ratios moved, which stayed fixed, and why the fixed one had to stay fixed. Run it, and watch which one holds still — that is the identity doing the work.",
       "voice": "af_bella",
       "engine": "kokoro",
       "estimated_duration_s": 27,
@@ -544,6 +544,10 @@
           {
             "at": 0.88,
             "event": "prompt holds fully visible so the viewer can pause and copy it"
+          },
+          {
+            "at": 0.2,
+            "event": "the narration reads the on-screen prompt aloud word for word, including '2.5' and 'why the fixed one had to stay fixed', then one line on what to watch for"
           }
         ],
         "remotion": {
@@ -561,18 +565,18 @@
           },
           "rendered": {
             "out": "media/B07.mp4",
-            "at": "2026-09-25T18:50:29.593380+00:00"
+            "at": "2026-09-26T05:27:40.263770+00:00"
           }
         }
       },
-      "actual_duration_s": 22.38,
+      "actual_duration_s": 24.6,
       "audio_file": "mp3/beat-B07.mp3",
-      "render_duration_s": 22.416666666666668,
+      "render_duration_s": 24.625,
       "build": {
         "status": "VIDEO",
         "src": "media/B07.mp4",
         "filled_by": "remotion:ClaudeComposerAsk",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     },
     {
@@ -616,7 +620,7 @@
         "status": "MANIM",
         "src": "manim/B08.mp4",
         "filled_by": "manim:B08_TitleCredit",
-        "at": "2026-09-25T14:55:40"
+        "at": "2026-09-26T01:35:32"
       }
     }
   ]

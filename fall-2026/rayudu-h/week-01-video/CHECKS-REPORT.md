@@ -18,10 +18,10 @@ Teaching arc:  FRAMEWORK ✓ | WORKED EXAMPLE ✓ | FALSIFIABILITY ✓
 | B01A | ANALOGY | SHOW | contrast slider travels; three swatches spread to near-ink/near-white, then wash to one grey; the terracotta marker on the brightest never moves. Re-timed to the words 2026-09-25; the inversion (lower temperature, higher contrast) is shown as it is spoken |
 | B02 | FRAMEWORK | SHOW | 3 score chips → bars rise while their values count up → sum settles 1.000000 |
 | B03 | ASK | SHOW | composer with the plot request typed; send button pulses |
-| B04 | MECHANISM | SHOW | identity types in; gap pins at 2; three ratio bars grow to 4/2/1 units; e-column lands |
+| B04 | MECHANISM | SHOW | p₂/p₀ written as two fractions over the same total; the total is boxed and cancels; the identity rises; gap pins at 2; three ratio bars grow to 4/2/1 units as each value is spoken; e-column lands; the ordering strip darkens on the conclusion (derivation added 2026-09-26) |
 | B05 | BOUNDARY | SHOW | bars sweep T=1→0.1; sliver remains; refusal card snaps; closing line holds alone |
-| B06 | VERDICT | SHOW | artifact page reveals 4 lines in narration order, boundary line last in terracotta |
-| B07 | HANDOFF | SHOW | the viewer's prompt types itself in full, held for pausing |
+| B06 | VERDICT | SHOW | artifact page reveals 6 numbered lines — mechanism, verified ratios, ordering with the seed-7 counts and the full T = 2 row, limit case, boundary, reproduction note |
+| B07 | HANDOFF | SHOW | the viewer's prompt types itself in full, held for pausing; the narration reads it aloud word for word (2026-09-26) |
 | B08 | OUTRO | CARD | title restate + credit (reel-local Manim) — **justified**: the outro brand card is a CARD by doctrine (OUTRO LAW) |
 
 No beat is a bare CARD carrying a factual claim. No PUNTs.
@@ -30,7 +30,8 @@ No beat is a bare CARD carrying a factual claim. No PUNTs.
 
 - **FRAMEWORK before examples** ✓ — B02 builds the whole softmax machine before
   B04 uses it. The baseline distribution is on screen before any ratio.
-- **WORKED EXAMPLE** ✓ — B04 computes p₂/p₀ at three temperatures and checks
+- **WORKED EXAMPLE** ✓ — B04 first derives the identity on screen (the shared
+  total cancels), then computes p₂/p₀ at three temperatures and checks
   each against exp(2/T); the numbers are the chapter's own.
 - **FALSIFIABILITY** ✓ — B05 is a dedicated boundary beat: it names what the
   explanation does NOT establish, and shows the function refusing T=0 rather
@@ -221,3 +222,27 @@ spoken.
 | Changed beats read against the words at the moment each is spoken | B00, B03, B07, and B01A at six phrase points — all agree |
 | Captions | 57 cues · longest line 42 · 0 timing errors · all 10 beats aligned |
 | Reel | 176.42 s (2:56), 3840×2160 |
+
+### Third pass — rubric-driven improvements (2026-09-26)
+
+**B04 now derives its identity instead of asserting it.** p₂/p₀ is written as
+two fractions over the same total, Σ exp(z/T); the totals are boxed on "the
+same total underneath" and fall away on "so it cancels", leaving
+exp((z₂ − z₀)/T), which rises into the identity line. Narration 61 → 85 words,
+21.97 s → 31.25 s, every event timed to its phrase. The derivation also carries
+the ordering claim: T only divides the gap, so no temperature changes its sign.
+Boxed rather than struck through, because `--curve-strict` makes any stroke
+across a label an ERROR and the gate was not loosened.
+
+**B06** carries the full T = 2 row (202 / 329 / 469), re-run from `main.py`'s
+`sample()` today. **B07**'s narration reads the on-screen prompt verbatim.
+
+| Check | Result |
+|---|---|
+| Gate A — static pre-flight | CLEAN, after pinning coordinates (first version rejected: a width-derived position read x = −7.5 render-free) |
+| Gate B — layout audit | CLEAN — 41 snapshots, 0 errors / 0 warnings, `--curve-strict` |
+| Gate V | CLEAN — 0 BLOCKER / 0 MAJOR |
+| Phrase-timed read: B04 at 9 points, B06, B07 at 5 points | all agree with the narration |
+| Whole-reel audit of the final master, every beat at 30 / 60 / 92 % | all agree |
+| Captions | 58 cues · longest line 42 · 0 timing errors |
+| Reel | 187.88 s (3:08), 3840×2160 |

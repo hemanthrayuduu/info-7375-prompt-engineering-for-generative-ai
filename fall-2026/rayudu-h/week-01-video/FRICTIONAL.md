@@ -343,6 +343,56 @@ says "change only for off-brand one-offs", so it was a one-line fix per beat to
   **Next step:** raise it — and the unused `lead_silence_s` — as toolkit issues,
   rather than patch the shared component from inside one assignment.
 
+## 2026-09-26 — the video stated its key step instead of showing it
+
+- **What I asked.** With the contradictions fixed, I asked what else would move
+  the rubric. The answer was about the argument, not the polish: the step the
+  whole video rests on — divide one probability by another and the total
+  cancels — was never shown. B02 showed the softmax formula; B04 jumped straight
+  to `p₂/p₀ = exp((z₂ − z₀)/T)`. The step between existed only as text on B06
+  ("Normalization cancels"), which is what the assignment warns against: *"a
+  slide that says 'this is numerically stable' while you talk over it is not an
+  explanation."*
+- **What changed.** B04 now opens by writing p₂/p₀ as two fractions over the
+  same total, Σ exp(z/T). The totals are boxed on "the same total underneath",
+  fall away on "so it cancels", and what is left, exp((z₂ − z₀)/T), rises into
+  the identity. Narration 61 → 85 words, 21.97 s → 31.25 s, every event timed to
+  its phrase from `mp3/words.json`. It pays twice: once the total is gone, T only
+  divides the gap, and dividing by a positive number cannot change a sign — so
+  the ordering cannot flip at any temperature. That half of the thesis used to be
+  a caption; now it follows from the one line shown.
+- **Friction: the obvious visual was not allowed.** The natural way to show a
+  cancellation is a strike-through. Under `--curve-strict` the layout gate treats
+  any stroke crossing a text label as an ERROR, and the gate was not loosened to
+  make the picture work. The totals are boxed instead — a box sits outside the
+  text — and faded together. Same meaning; the gate passed, 41 snapshots, clean.
+- **Friction: a layout that was right but could not be verified.** Gate A
+  rejected the first version before rendering: *"explicit coord(s) outside the
+  frame, e.g. (-7.5,-0.2)"*. Positions had been computed from `Text.width` at
+  runtime, and the render-free check uses stand-in widths, so one evaluated off
+  frame. The real render would have been fine — the widths had been measured —
+  but a check that cannot verify a position is right to refuse it. The
+  coordinates are now pinned from the measured widths (EB Garamond at 44 pt:
+  1.95 / 2.45 / 3.23 / 4.39 units), which is the house style anyway, and Gate B
+  still checks the rendered pixels.
+- **B06 had a claim with half its evidence.** The verdict says outcome two wins
+  at every temperature but showed only outcome 2's counts, 849 / 630 / 469 — and
+  at T = 2, 469 is not a majority. `main.py`'s own `sample()` was re-run at
+  T = 0.5, 1 and 2 (seed 7, n = 1000, Python 3.12.9): all nine counts match the
+  course's recorded table, including T = 2's 202 / 329 / 469, now on screen.
+- **B07 reads its prompt word for word,** including "2.5" and "why the fixed one
+  had to stay fixed", which a listener previously never heard.
+- **Found in the code.** `main.py` computes `exp((x − peak) / T)`, subtracting the
+  largest score first for numerical stability. The peak cancels in a ratio
+  exactly as the total does, so B04's derivation holds for the program as
+  written, not only for the textbook formula (`FACTCHECK.md`).
+- **Human and AI.** I asked what to improve against the rubric and approved the
+  three changes. Claude proposed them, wrote the narration and the scene, chose
+  the box when the strike-through was barred, measured the text widths, ran the
+  gates, and audited every beat of the final master against its script.
+- **Result.** 3:08; captions 58 cues with zero timing errors; all gates clean;
+  the whole-reel audit agrees with the narration beat by beat.
+
 ---
 
 ## Human and AI contributions (retrospective — added 2026-09-23)

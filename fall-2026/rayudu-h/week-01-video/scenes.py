@@ -4,7 +4,8 @@ Four GRAPHIC beats from beat_sheet.json:
     B01A_ContrastSlider    the everyday analogy: a contrast slider rescales
                            differences and never reorders them
     B02_ScoresToProbs      three scores -> one distribution at T = 1
-    B04_RatioCollapse      the ratio identity, collapsing across T
+    B04_RatioCollapse      the shared total cancels, leaving the ratio identity;
+                           the identity, collapsing across T
     B05_ConcentrationLimit the boundary: concentration is not correctness
 
 EVIDENCE. Every figure on screen was reproduced locally from
@@ -42,7 +43,7 @@ SERIF = "EB Garamond"           # Claude serif (bundled in runtime/fonts)
 MONO  = "PT Mono"               # real error text reads as mono
 
 # -- measured narration durations (mp3/timings.json) = the master clock -------
-DUR = {"B01A": 26.18, "B02": 22.42, "B04": 21.97, "B05": 26.30, "B08": 2.47}
+DUR = {"B01A": 26.18, "B02": 22.42, "B04": 31.25, "B05": 26.30, "B08": 2.47}
 
 # -- verified figures (main.py, scores [1, 2, 3]) ----------------------------
 P_T1 = (0.0900305732, 0.2447284711, 0.6652409558)   # T = 1, sums to 1.000000
@@ -247,8 +248,11 @@ class B02_ScoresToProbs(Scene):
 
 # -----------------------------------------------------------------------------
 #  B04 -- WATCH THE RATIO
-#  The identity types in, the score gap pins at 2 (the accent), and the three
-#  ratios collapse down the frame -- each landing on its exact power of e.
+#  First the WHY: p2/p0 written as two fractions over the same total, the total
+#  cancels, and what is left is exp((z2 - z0)/T). Then the gap pins at 2 (the
+#  accent) and the three ratios collapse down the frame -- each landing on its
+#  exact power of e. Last, the conclusion the cancellation forces: T cannot turn
+#  a positive gap negative, so the ordering can never flip.
 # -----------------------------------------------------------------------------
 class B04_RatioCollapse(Scene):
 
@@ -259,6 +263,40 @@ class B04_RatioCollapse(Scene):
         title    = T_("Watch The Ratio", 44).move_to([0.0, 3.02, 0.0])
         identity = T_("p\u2082 / p\u2080  =  exp((z\u2082 \u2212 z\u2080) / T)", 34).move_to([0.0, 2.10, 0.0])
         gapnote  = T_("z\u2082 \u2212 z\u2080  =  2   (fixed)", 32, ACC).move_to([0.0, 1.32, 0.0])
+
+        # --- the cancellation (added 2026-09-26) -------------------------------
+        # B02 defined p = exp(z/T) / Σ exp(z/T). Divide p2 by p0 and both carry the
+        # SAME total underneath, so it cancels; what is left depends only on the
+        # gap z2 - z0, divided by T. Earlier cuts only asserted this (as text on
+        # B06); here it is shown. Gate-safe by design: the shared totals are BOXED
+        # and faded, not struck through -- a stroke across a label is an ERROR
+        # under --curve-strict, and the gate is not loosened. Σ is U+03A3, as in B02.
+        FS, y_c, dy = 44, -0.20, 0.70
+        lhs    = T_("p\u2082 / p\u2080  =", FS)
+        num_a  = T_("exp(z\u2082 / T)", FS)
+        num_b  = T_("\u00f7  \u03a3 exp(z / T)", FS)
+        den_a  = T_("exp(z\u2080 / T)", FS)
+        den_b  = T_("\u00f7  \u03a3 exp(z / T)", FS)
+        result = T_("=  exp((z\u2082 \u2212 z\u2080) / T)", FS)
+        # Explicit coordinates, not computed from Text.width: Gate A checks the
+        # scene render-free, where widths are stand-ins, and a width-derived
+        # position read as x = -7.5 (off frame). These are laid out from widths
+        # MEASURED in EB Garamond at 44 pt -- lhs 1.95, exp(...) 2.45, the total
+        # 3.23, the result 4.39 -- leaving 0.45 between parts and 0.20 inside the
+        # rule. Before the cancel the expression spans -4.42..4.42; after it,
+        # -5.05..5.05 -- both inside the +-6.3 safe width. Gate B checks the
+        # rendered pixels, so a font that measured differently would be caught.
+        lhs.move_to([-3.44, y_c, 0.0])
+        rule = Line([-2.02, y_c, 0.0], [4.42, y_c, 0.0], color=INK, stroke_width=2)
+        num_a.move_to([-0.59, y_c + dy, 0.0]); den_a.move_to([-0.59, y_c - dy, 0.0])
+        num_b.move_to([2.60, y_c + dy, 0.0]);  den_b.move_to([2.60, y_c - dy, 0.0])
+        box_n = SurroundingRectangle(num_b, color=SOFT, buff=0.10, stroke_width=2)
+        box_d = SurroundingRectangle(den_b, color=SOFT, buff=0.10, stroke_width=2)
+
+        # after the cancel: lhs | num_a / den_a | = exp((z2 - z0)/T), re-centred
+        lhs_to = [-4.07, y_c, 0.0]
+        r1, rw2, cx = -2.65, 2.85, -1.22
+        result.move_to([2.85, y_c, 0.0])
 
         rows_y = (0.35, -0.65, -1.65)
         temps  = ("T = 0.5", "T = 1", "T = 2")
@@ -282,24 +320,45 @@ class B04_RatioCollapse(Scene):
         strip  = T_("ordering [2, 1, 0]  \u2014  unchanged at every T", 28, SOFT
                     ).move_to([0.0, -2.90, 0.0])
 
-        P(self, Write(title), rt=1.0)
+        # Timed to mp3/words.json. Comments give the phrase each play lands on.
+        P(self, Write(title), rt=0.8)
+        P(self, FadeIn(lhs), Create(rule), FadeIn(num_a), FadeIn(num_b),
+          FadeIn(den_a), FadeIn(den_b), rt=1.2)                  # 0.0s  "Divide outcome two by outcome zero."
+        W(self, 1.4)
+        P(self, Create(box_n), Create(box_d), rt=0.8)            # 3.4s  "the same total underneath,"
+        W(self, 0.6)
+        P(self, FadeOut(num_b), FadeOut(den_b), FadeOut(box_n), FadeOut(box_d),
+          lhs.animate.move_to(lhs_to),
+          rule.animate.put_start_and_end_on([r1, y_c, 0.0], [r1 + rw2, y_c, 0.0]),
+          num_a.animate.move_to([cx, y_c + dy, 0.0]),
+          den_a.animate.move_to([cx, y_c - dy, 0.0]), rt=0.9)   # 4.8s  "so it cancels"
         W(self, 0.3)
-        P(self, Write(identity), rt=2.0)
+        P(self, Write(result), rt=1.3)                           # 6.0s  "what is left depends only on the gap
+        W(self, 2.1)
+        P(self, FadeOut(VGroup(lhs, rule, num_a, den_a, result), shift=UP * 0.4),
+          FadeIn(identity, shift=UP * 0.4), rt=1.0)              # 9.4s   ... divided by T."
         W(self, 0.4)
-        P(self, FadeIn(gapnote, shift=DOWN * 0.15), rt=1.2)
-        W(self, 0.3)
+        P(self, FadeIn(gapnote, shift=DOWN * 0.15), rt=1.0)     # 10.8s "That gap is fixed at two."
+        W(self, 0.8)
         # The TABLE FRAME lands before any value: three temperatures and the
         # invariant, spanning the frame top to bottom. Canvas-fill law -- the
         # figure must already occupy the safe area at its midpoint, and a
         # reader needs the axis of comparison before the numbers arrive.
         P(self, LaggedStart(*[FadeIn(t, shift=RIGHT * 0.2) for t in tcol],
-                            lag_ratio=0.25), FadeIn(strip), rt=1.5)
-        W(self, 0.3)
-        for i in range(3):
-            P(self, FadeIn(vcol[i]), GrowFromEdge(bars[i], LEFT), rt=1.8)
-            W(self, 0.5 if i < 2 else 0.4)
-        P(self, FadeIn(legend), rt=0.9)
-        P(self, LaggedStart(*[FadeIn(e) for e in ecol], lag_ratio=0.35), rt=3.0)
+                            lag_ratio=0.25), FadeIn(strip), rt=1.2)   # 12.6s "At temperature zero point five"
+        W(self, 2.1)
+        P(self, FadeIn(vcol[0]), GrowFromEdge(bars[0], LEFT), rt=1.2)  # 15.9s "fifty-four point six"
+        W(self, 0.8)
+        P(self, FadeIn(vcol[1]), GrowFromEdge(bars[1], LEFT), rt=1.2)  # 17.9s "seven point three nine"
+        W(self, 1.3)
+        P(self, FadeIn(vcol[2]), GrowFromEdge(bars[2], LEFT), rt=1.2)  # 20.4s "two point seven two"
+        W(self, 0.2)
+        P(self, FadeIn(legend), rt=0.6)
+        P(self, LaggedStart(*[FadeIn(e) for e in ecol], lag_ratio=0.35), rt=2.6)  # 22.4s "exactly e to the fourth ..."
+        W(self, 1.9)
+        P(self, Indicate(gapnote, scale_factor=1.12, color=ACC), rt=0.8)          # 26.9s "a positive gap"
+        W(self, 1.0)
+        P(self, strip.animate.set_color(INK).scale(1.12), rt=0.9)               # 28.7s "no two outcomes ever swap places"
         SETTLE(self, DUR["B04"])
 
 

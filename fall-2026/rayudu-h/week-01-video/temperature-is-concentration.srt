@@ -118,142 +118,149 @@ isolates temperature: what happens to the
 ratio between two outcomes?
 
 27
-00:01:20,833 --> 00:01:22,375
-Watch the ratio, not the bars.
+00:01:20,833 --> 00:01:23,500
+Divide outcome two by outcome zero.
 
 28
-00:01:23,042 --> 00:01:25,250
-Outcome two over outcome zero.
+00:01:23,542 --> 00:01:28,291
+They share the same total underneath, so
+it cancels — what is left depends only on
 
 29
-00:01:25,292 --> 00:01:29,167
-At temperature zero point five
-it is fifty-four point six.
+00:01:28,292 --> 00:01:30,917
+the gap between their
+scores, divided by T.
 
 30
-00:01:29,208 --> 00:01:31,374
-At one, seven point three nine.
+00:01:31,583 --> 00:01:33,583
+That gap is fixed at two.
 
 31
-00:01:31,375 --> 00:01:33,1000
-At two, just two point seven two.
+00:01:33,625 --> 00:01:38,417
+At temperature zero point five
+the ratio is fifty-four point six.
 
 32
-00:01:34,042 --> 00:01:36,791
-Those are exactly e to the
-fourth, e squared, and e.
+00:01:38,458 --> 00:01:40,874
+At one, seven point three nine.
 
 33
-00:01:36,792 --> 00:01:38,333
-Same scores every time.
+00:01:40,875 --> 00:01:46,042
+At two, just two point seven two —
+exactly e to the fourth, e squared, and e.
 
 34
-00:01:39,083 --> 00:01:41,250
-The gap between them is fixed at two.
+00:01:46,708 --> 00:01:51,249
+No temperature can turn a positive gap
+negative, so no two outcomes ever swap
 
 35
-00:01:41,292 --> 00:01:42,500
-Only the temperature moved.
+00:01:51,250 --> 00:01:52,082
+places.
 
 36
-00:01:42,833 --> 00:01:44,917
+00:01:52,083 --> 00:01:54,167
 Now the limit — what
 this does not establish.
 
 37
-00:01:45,625 --> 00:01:49,332
+00:01:54,875 --> 00:01:58,582
 Push the temperature down and the best
 outcome dominates, but it never becomes
 
 38
-00:01:49,333 --> 00:01:54,292
+00:01:58,583 --> 00:02:03,542
 certain: at zero point one the worst
 still holds two times ten to the minus
 
 39
-00:01:54,875 --> 00:01:55,499
+00:02:04,125 --> 00:02:04,749
 nine.
 
 40
-00:01:55,500 --> 00:01:59,708
+00:02:04,750 --> 00:02:08,958
 Temperature zero is refused outright
 — the function raises a value error.
 
 41
-00:02:00,583 --> 00:02:02,167
+00:02:09,833 --> 00:02:11,417
 Concentration is not correctness.
 
 42
-00:02:02,708 --> 00:02:06,791
+00:02:11,958 --> 00:02:16,041
 Turn the contrast all the way up on a
 photo of the wrong person, and all you get
 
 43
-00:02:06,792 --> 00:02:08,917
+00:02:16,042 --> 00:02:18,167
 is a sharper picture of the wrong person.
 
 44
-00:02:09,167 --> 00:02:10,167
+00:02:18,417 --> 00:02:19,417
 So, one page.
 
 45
-00:02:10,750 --> 00:02:15,624
+00:02:19,1000 --> 00:02:24,874
 Temperature divides the score gap before
 exponentiating, so it rescales every ratio
 
 46
-00:02:15,625 --> 00:02:16,625
+00:02:24,875 --> 00:02:25,875
 at once.
 
 47
-00:02:16,875 --> 00:02:21,208
+00:02:26,125 --> 00:02:30,458
 The ordering is untouched — outcome two
 wins at every temperature we tested.
 
 48
-00:02:21,917 --> 00:02:26,458
+00:02:31,167 --> 00:02:35,708
 The sampled counts agree: eight hundred
 forty-nine, six hundred thirty, four
 
 49
-00:02:26,500 --> 00:02:28,458
+00:02:35,750 --> 00:02:37,708
 hundred sixty-nine, at seed seven.
 
 50
-00:02:28,875 --> 00:02:31,292
+00:02:38,125 --> 00:02:40,542
 And none of that is evidence
 the answer is right.
 
 51
-00:02:31,542 --> 00:02:32,542
+00:02:40,792 --> 00:02:41,749
 Your turn.
 
 52
-00:02:32,583 --> 00:02:37,041
-Here is the prompt: take a softmax over
-the scores one, two, three, compute the
+00:02:41,750 --> 00:02:45,667
+Here is the prompt: take a softmax
+over the scores one, two, three.
 
 53
-00:02:37,042 --> 00:02:41,958
-ratio of outcome two to outcome zero at
-temperatures zero point five, one, and
+00:02:45,708 --> 00:02:50,499
+Compute p two over p zero at T equals zero
+point five, one, and two, and check each
 
 54
-00:02:42,333 --> 00:02:44,875
-two, and check each against
-e to the two over T.
+00:02:50,500 --> 00:02:52,250
+value against e to the two over T.
 
 55
-00:02:45,458 --> 00:02:48,583
-Then change only the middle
-score and see which ratios move.
+00:02:52,750 --> 00:02:56,749
+Now change only the middle score, to two
+point five, and recompute: tell me which
 
 56
-00:02:49,292 --> 00:02:53,667
-Run it, and watch which one stays fixed
-— that is the identity doing the work.
+00:02:56,750 --> 00:03:00,625
+ratios moved, which stayed fixed, and
+why the fixed one had to stay fixed.
 
 57
-00:02:53,1000 --> 00:02:56,292
+00:03:01,208 --> 00:03:05,208
+Run it, and watch which one holds still
+— that is the identity doing the work.
+
+58
+00:03:05,417 --> 00:03:07,708
 Temperature is concentration, not truth.
 

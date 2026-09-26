@@ -5,7 +5,7 @@
 **Course:** INFO 7375 · Prompt Engineering & Agentic AI · Fall 2026 · Section 01
 **Concept:** Temperature is a *concentration* control, not a fact checker
 **Source:** Chapter 1 — Randomness and first prompts, Part 2
-**Runtime:** 2:56 (176.42 s) · 3840×2160 · 24 fps · H.264 / AAC · captions included
+**Runtime:** 3:08 (187.88 s) · 3840×2160 · 24 fps · H.264 / AAC · captions included
 **Licence:** MIT for code, CC BY 4.0 for the video and documents — see `LICENSE`
 
 ## The one sentence
@@ -39,10 +39,10 @@ correctness.
 | B01A | **The everyday analogy** — a contrast slider spreads three greys apart and washes them back together, and the marker on the brightest never moves. Temperature is the slider run backwards: lower temperature, higher contrast |
 | B02 | The whole softmax: three scores → three bars → sum settles at 1.000000 |
 | B03 | The question the next figure answers: what happens to the ratio between two outcomes |
-| B04 | The identity, and the ratio collapsing 54.6 → 7.39 → 2.72 = e⁴/e²/e¹ |
+| B04 | **The why, shown:** p₂/p₀ written as two fractions over the same total, which cancels — leaving exp((z₂ − z₀)/T). Then the ratio collapsing 54.6 → 7.39 → 2.72 = e⁴/e²/e¹, and why no two outcomes can ever swap places |
 | B05 | **The boundary** — at T = 0.1 the worst outcome is 2.061060e-09, not zero; T = 0 is refused outright. Closes on the analogy callback: a sharper picture of the wrong person |
-| B06 | One-page verdict, including the seed-7 counts 849 / 630 / 469 |
-| B07 | Your turn — a prompt that breaks everything except the fixed ratio |
+| B06 | One-page verdict, including the seed-7 counts 849 / 630 / 469 and the full T = 2 row 202 / 329 / 469 |
+| B07 | Your turn — a prompt that breaks everything except the fixed ratio, read aloud word for word |
 | B08 | Title restate + credit |
 
 ## What this explanation does NOT establish
@@ -66,8 +66,8 @@ in `FACTCHECK.md`.
 
 | File | What it is |
 |---|---|
-| `temperature-is-concentration.mp4` | the video (2:56, 4K) |
-| `temperature-is-concentration.srt` | captions, 57 cues, built from the aligned narration |
+| `temperature-is-concentration.mp4` | the video (3:08, 4K) |
+| `temperature-is-concentration.srt` | captions, 58 cues, built from the aligned narration |
 | `beat_sheet.json` | the reviewed narration + visual plan, one entry per beat |
 | `scenes.py` | the Manim scenes (B01A, B02, B04, B05, and the B08 outro card) |
 | `README.md` | this file |
@@ -145,12 +145,12 @@ python3 chapter1-course/lessons/01-randomness-and-first-prompts/code/main.py
 
 # 2. the delivered file is the intended one
 shasum -a 256 temperature-is-concentration.mp4
-#    e5493acd4ac10d9228d9a5ebaab94044cec9afc02607b2cbdc992474a986b95d
+#    88bbcabcb507da049398d1b56f30d5665bfeaab008634a6dcd86324df3e585ba
 
 # 3. the render is what it claims to be
 ffprobe -v error -show_entries format=duration -show_entries stream=width,height \
         -of default=noprint_wrappers=1 temperature-is-concentration.mp4
-#    expect 176.417 s at 3840×2160
+#    expect 187.875 s at 3840×2160
 ```
 
 A rebuild reproduces the *content*, not necessarily the same bytes — Manim and
